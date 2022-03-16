@@ -26,8 +26,9 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t dstsize);
 size_t	ft_strlen(const char *s);
 int		ft_putstr(char *s);
 int		ft_putchar(char c);
-char	*ft_tobase(long long nbr, char *base);
+char	*put_hex(unsigned int nbr, char *base);
 int		ft_printf(const char *str, ...);
 char	*ft_itoa(int n);
+char	*ft_uitoa(unsigned long n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 #endif

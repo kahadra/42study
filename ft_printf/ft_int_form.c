@@ -31,11 +31,11 @@ size_t	unsignedint_form(unsigned int n, char *form)
 	char	*arg;
 
 	if (*form == 'u')
-		arg = ft_itoa(n);
+		arg = ft_uitoa(n);
 	else if (*form == 'x')
-		arg = ft_tobase(n, "0123456789abcdef");
+		arg = put_hex(n, "0123456789abcdef");
 	else if (*form == 'X')
-		arg = ft_tobase(n, "0123456789ABCDEF");
+		arg = put_hex(n, "0123456789ABCDEF");
 	else
 		return (0);
 	sl = ft_putstr(arg);
@@ -48,7 +48,7 @@ size_t	pointer_form(long long n)
 	size_t	sl;
 	char	*addr;
 
-	addr = ft_tobase(n, "0123456789abcdef");
+	addr = put_hex(n, "0123456789abcdef");
 	addr = ft_strjoin(ft_strdup("0x"), addr);
 	sl = ft_putstr(addr);
 	free(addr);

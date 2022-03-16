@@ -12,6 +12,7 @@
 
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "ft_printf.h"
 
 static int	ft_check_error(char *base)
@@ -39,29 +40,34 @@ static int	ft_check_error(char *base)
 	return (1);
 }
 
-char	*ft_tobase(long long nbr, char *base)
+static char	*change_base(unsigned int nbr, char *base, char *str)
 {
-	int		bl;
-	char	*str;
-	char	*temp;
+	char			*temp;
+	unsigned int	bl;
 
 	bl = ft_strlen(base);
-	str = ft_strdup("");
+	if ((nbr / bl) < bl && (nbr / bl) != 0)
+	{
+		temp = ft_substr(base, nbr / bl, 1);
+		str = ft_strjoin(str, temp);
+	}
+	else if (nbr / bl >= bl)
+		change_base(nbr / bl, base, str);
+	temp = ft_substr(base, nbr % bl, 1);
+	str = ft_strjoin(str, temp);
+	return (str);
+}
+char	*put_hex(unsigned int nbr, char *base)
+{
+	char			*str;
+
 	if (ft_check_error(base))
 	{
-		if ((nbr / bl) < bl && (nbr / bl) != 0)
-		{
-			temp = ft_substr(base, nbr / bl, 1);
-			str = ft_strjoin(str, temp);
-		}
-		else if (nbr / bl >= bl)
-			ft_tobase(nbr / bl, base);
-		temp = ft_substr(base, nbr % bl, 1);
-		str = ft_strjoin(str, temp);
+		str = ft_strdup("");
+		str = change_base(nbr, base, str);
 	}
 	else
 	{
-		free(str);
 		return (NULL);
 	}
 	return (str);
