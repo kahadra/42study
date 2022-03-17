@@ -6,7 +6,7 @@
 /*   By: chpark <chpark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 16:08:38 by chpark            #+#    #+#             */
-/*   Updated: 2022/03/12 16:19:07 by chpark           ###   ########.fr       */
+/*   Updated: 2022/03/17 17:35:21 by chpark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ size_t	unsignedint_form(unsigned int n)
 size_t	hexa_form(unsigned long n, char *form)
 {
 	size_t	sl;
+
 	if (*form == 'x')
 		sl = put_hex(n, "0123456789abcdef");
 	else

@@ -6,7 +6,7 @@
 /*   By: chpark <chpark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 14:34:19 by chpark            #+#    #+#             */
-/*   Updated: 2022/03/13 14:42:59 by chpark           ###   ########.fr       */
+/*   Updated: 2022/03/17 17:34:53 by chpark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 size_t	int_form(int n);
 size_t	unsignedint_form(unsigned int n);
-size_t  hexa_form(unsigned long n, char *form);
+size_t	hexa_form(unsigned long n, char *form);
 size_t	pointer_form(long long n);
 size_t	char_form(int c);
 size_t	str_form(char *str);
