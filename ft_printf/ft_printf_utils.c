@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 
 size_t	ft_strlen(const char *s)
 {
@@ -80,7 +79,6 @@ char	*ft_strjoin(char *s1, char *s2)
 		free(s2);
 		return (NULL);
 	}
-	printf("d3 %s\n", s1);
 	ft_strlcpy(s, s1, l1 + 1);
 	free(s1);
 	ft_strlcpy(s + l1, s2, l2 + 1);
