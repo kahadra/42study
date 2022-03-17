@@ -26,8 +26,10 @@ static int	find_form(char *form, va_list ap)
 		sl = int_form(va_arg(ap, int));
 	else if (*form == 'p')
 		sl = pointer_form((long long)va_arg(ap, void *));
-	else if (*form == 'u' || *form == 'x' || *form == 'X')
-		sl = unsignedint_form(va_arg(ap, unsigned int), (char *)form);
+	else if (*form == 'u')
+		sl = unsignedint_form(va_arg(ap, unsigned int));
+	else if (*form == 'x' || *form == 'X')
+		sl = hexa_form(va_arg(ap, unsigned int), (char *)form);
 	else if (*form == '%')
 		sl = char_form(*form);
 	else

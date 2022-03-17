@@ -16,7 +16,8 @@
 # include <unistd.h>
 
 size_t	int_form(int n);
-size_t	unsignedint_form(unsigned int n, char *form);
+size_t	unsignedint_form(unsigned int n);
+size_t  hexa_form(unsigned long n, char *form);
 size_t	pointer_form(long long n);
 size_t	char_form(int c);
 size_t	str_form(char *str);
@@ -26,7 +27,7 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t dstsize);
 size_t	ft_strlen(const char *s);
 int		ft_putstr(char *s);
 int		ft_putchar(char c);
-char	*put_hex(unsigned int nbr, char *base);
+size_t	put_hex(unsigned long n, char *base);
 int		ft_printf(const char *str, ...);
 char	*ft_itoa(int n);
 char	*ft_uitoa(unsigned long n);

@@ -8,9 +8,8 @@ RM = rm -rf
 SRC = ft_printf_utils.c \
       ft_int_form.c \
       ft_char_form.c \
-      ft_tobase.c \
+      ft_put.c \
       ft_itoa.c \
-      ft_printf_utils2.c \
 	  ft_printf.c
 OBJ_DIR = ./obj/
 OBJ = $(SRC:.c=.o)
