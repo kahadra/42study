@@ -1,39 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tobase_n.c                                      :+:      :+:    :+:   */
+/*   sort_util.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chpark <chpark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/12 17:57:31 by chpark            #+#    #+#             */
-/*   Updated: 2022/03/12 18:44:00 by chpark           ###   ########.fr       */
+/*   Created: 2022/03/29 14:36:30 by chpark            #+#    #+#             */
+/*   Updated: 2022/03/31 00:22:25 by chpark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "ft_printf.h"
+#include "../../header/push_swap.h"
 
-size_t	put_hex(unsigned long n, char *base)
+int	is_sorted(t_list *a)
 {
-	int				i;
-	unsigned int	bl;
+	int	i;
 
-	bl = ft_strlen(base);
 	i = 0;
-	if (n >= bl)
-		i += put_hex((n / bl), base);
-	i += ft_putchar(base[(n % bl)]);
-	return (i);
+	while (i + 1 < a->used_size)
+	{
+		if (a->arr[i + 1] != (a->arr[i] + 1))
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
-int	ft_putstr(char *s)
+int	ft_diff(int s1, int s2)
 {
-	if (!(s))
-		return (-1);
-	return (write(1, s, ft_strlen(s)));
-}
-
-int	ft_putchar(char c)
-{
-	return (write(1, &c, 1));
+	if (s1 > s2)
+		return (0);
+	else
+		return (1);
 }
