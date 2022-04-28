@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/get_next_line.h"
+#include "libft.h"
 
 t_gnl	*make_lst(t_gnl *head, int fd)
 {

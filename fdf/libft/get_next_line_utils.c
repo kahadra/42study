@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/get_next_line.h"
+#include "libft.h"
 
 char	*ft_strndup(const char *str, size_t n)
 {
@@ -48,22 +48,6 @@ char	*ft_strnjoin(char *s1, char const *s2, ssize_t n)
 	free(s1);
 	ft_strlcpy(s + l1, s2, n + 1);
 	return (s);
-}
-
-char	*ft_strchr(char *s, int c)
-{
-	int		i;
-
-	if (!s)
-		return (NULL);
-	i = 0;
-	while (s[i] != '\0')
-	{
-		if (s[i] == c)
-			return ((char *)s + i);
-		i++;
-	}
-	return (0);
 }
 
 size_t	ft_strlcpy(char *dest, const char *src, size_t dstsize)

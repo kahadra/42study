@@ -12,15 +12,51 @@
 
 #include "../headers/fdf.h"
 
-static void	isometric(t_data *data)
+void	ft_isometric(t_data *data)
 {
-	data->y1 = (data->x0 + data->y0) * sin(0.523599) - data->z0;
-	data->x1 = (data->x0 - data->y0) * cos(0.523599);
+	int	temp_x;
+	int	temp_y;
+
+	temp_x = data->st_x;
+	temp_y = data->st_y;
+	data->st_y = (temp_x + temp_y) * sin(ISO_ANGLE) - data->st_z;
+	data->st_x = (temp_x - temp_y) * cos(ISO_ANGLE);
 }
 
-static void	parallel(t_data *data)
+void	ft_parallel(t_data *data)
 {
-	
-	data->y1 = data->y0 - data->z0 * sin(0.785398);
-	data->x1 = data->x0 - data->z0 * cos(0.785398);
+	int	temp_x;
+	int	temp_y;
+
+	temp_x = data->st_x;
+	temp_y = data->st_y;
+	data->st_y = temp_y - data->st_z * sin(PAR_ANGLE);
+	data->st_x = temp_x - data->st_z * cos(PAR_ANGLE);
+}
+
+void	ft_key3(int key, t_data *data)
+{
+	if (key == 34)//'i'
+		data->projection = 0;
+	else if (key == 5)//'g'
+		data->gamma = data->gamma + (M_PI / 2);
+	else if (key == 43)//'<'
+		data->color += 100;
+	else if (key == 47)//'>'
+		data->color -= 100;
+	return ;
+}
+
+int	ft_abs(int a)
+{
+	if (a < 0)
+		a = -a;
+	return (a);
+}
+
+int	ft_comper(int a, int b)
+{
+	if (a < b)
+		return (1);
+	return (-1);
 }

@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../headers/fdf.h"
 
 static void	ft_put_pixel(t_data *data, int x, int y)
@@ -20,9 +19,9 @@ static void	ft_put_pixel(t_data *data, int x, int y)
 	if (x >= 0 && x < data->width && y >= 0 && y < data->height)
 	{
 		i = (x * data->bit_per_pixel / 8) + (y * data->size_line);
-		data->addr[i] = data->cur_color;
-		data->addr[++i] = data->cur_color >> 8;
-		data->addr[++i] = data->cur_color >> 16;
+		data->addr[i] = data->cur_c;
+		data->addr[++i] = data->cur_c >> 8;
+		data->addr[++i] = data->cur_c >> 16;
 	}
 }
 
@@ -55,20 +54,20 @@ static void	ft_draw_line(t_data *data, int sx, int sy)
 	}
 }
 
-static void	ft_what_draw(t_data *data, int x, int y)
+static void	ft_draw(t_data *data, int x, int y)
 {
 	if (data->height == 1 && data->width == 1)
 	{
-		ft_pool_st(data, x, y);
-		ft_put_pixel(data, data->x0, data->y0);
+		ft_st(data, x, y);
+		ft_put_pixel(data, data->cur_x, data->cur_y);
 	}
 	if (data->line_point == 0 && data->height * data->width != 1)
 	{
 		ft_draw_line(data, 0, 0);
-		if (data->treug == 1 && x < data->width - 1 && y < data->height - 1)
+		if (x < data->width - 1 && y < data->height - 1)
 		{
-			ft_pool_st(data, x, y);
-			ft_pool_end(data, x + 1, y + 1);
+			ft_st(data, x, y);
+			ft_end(data, x + 1, y + 1);
 			ft_draw_line(data, 0, 0);
 		}
 	}
@@ -100,7 +99,7 @@ static void	ft_draw_back(t_data *data)
 		i++;
 	}
 	if (data->height == 1 && data->width == 1)
-		ft_what_draw(data, 0, 0);
+		ft_draw(data, 0, 0);
 }
 
 void	draw_image(t_data *data, int x, int y)
@@ -114,15 +113,15 @@ void	draw_image(t_data *data, int x, int y)
 		{
 			if (x != data->width - 1)
 			{
-				ft_pool_st(data, x, y);
-				ft_pool_end(data, x + 1, y);
-				ft_what_draw(data, x, y);
+				ft_st(data, x, y);
+				ft_end(data, x + 1, y);
+				ft_draw(data, x, y);
 			}
 			if (y != data->height - 1)
 			{
-				ft_pool_st(data, x, y);
-				ft_pool_end(data, x, y + 1);
-				ft_what_draw(data, x, y);
+				ft_st(data, x, y);
+				ft_end(data, x, y + 1);
+				ft_draw(data, x, y);
 			}
 			x++;
 		}
@@ -130,4 +129,3 @@ void	draw_image(t_data *data, int x, int y)
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 }
-

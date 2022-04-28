@@ -15,7 +15,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
 
 typedef struct s_list
 {
@@ -23,6 +22,22 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+typedef struct s_gnl
+{
+	int				fd;
+	char			*line;
+	struct s_gnl	*prev;
+	struct s_gnl	*next;
+}					t_gnl;
+
+char	*get_next_line(int fd);
+char	*ft_strndup(const char *str, size_t n);
+char	*ft_strnjoin(char *s1, char const *s2, ssize_t n);
+size_t	ft_strlcpy(char *dest, const char *src, size_t size);
+int		ft_strlen(const char *s);
+t_gnl	*make_lst(t_gnl *head, int fd);
+char	*read_gnl(int fd, char *line);
+char	*updat_gnl(t_gnl *node, char *line);
 int		ft_atoi(const char *str);
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
@@ -36,6 +51,7 @@ int		ft_strlen(const char *s);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_lstsize(t_list *lst);
+int		count_s(const char *s, char c);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strchr(const char *s, int c);

@@ -20,15 +20,18 @@ AFLAGS = rcs
 
 LIBFT 	= libft/libft.a
 
-SRC 	=	srcs/fdf.c \
-			srcs/map_read.c \
-			srcs/projection.c \
-			srcs/draw.c \
-			srcs/info_iso.c
-			
+SRC_D = ./srcs/
+SRC 	=	fdf.c \
+			map_read.c \
+			projection.c \
+			draw.c \
+			draw_utils.c\
+			st_end.c	
 OBJ_D := ./obj/
 OBJ	= $(SRC:.c=.o)
 OBJS := $(addprefix $(OBJ_D), $(OBJ))
+
+HEADERS = headers/fdf.h
 
 MLXLINK = -L minilibx
 MINILIBX = -I minilibx
@@ -37,7 +40,7 @@ OPENGL = -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME)
 
-$(OBJ_D)%.o : srcs/%.c
+$(OBJ_D)%.o : $(SRC_D)%.c
 	@mkdir -p $(OBJ_D)
 	$(CC) $(CFLAGS) -c $< -o $@
 
@@ -49,11 +52,11 @@ $(NAME): $(OBJS)
 clean:
 		make clean -C minilibx
 		make clean -C libft
-		/bin/rm -rf srcs/*.o
+		rm -rf $(OBJ_D)
 
 fclean: clean 
 		make fclean -C libft
-		/bin/rm -f $(NAME)
+		rm -f $(NAME)
 
 re: fclean all
 .PHONY: all clean fclean re
