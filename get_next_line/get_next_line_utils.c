@@ -44,9 +44,9 @@ char	*ft_strnjoin(char *s1, char const *s2, ssize_t n)
 		free(s1);
 		return (NULL);
 	}
-	ft_strlcpy(s, s1, l1 + 1);
+	ft_strlcpy(s, s1, l1);
 	free(s1);
-	ft_strlcpy(s + l1, s2, n + 1);
+	ft_strlcpy(s + l1, s2, n);
 	return (s);
 }
 
@@ -75,7 +75,7 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t dstsize)
 	i = 0;
 	if (dstsize == 0)
 		return (sl);
-	while (src[i] != '\0' && i < (dstsize - 1))
+	while (src[i] != '\0' && i < (dstsize)
 	{
 		dest[i] = src[i];
 		i++;
