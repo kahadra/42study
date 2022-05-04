@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGC = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 CC = gcc
 c_src = minitalk_utils.c
 c_obj=$(c_src:.c=.o)

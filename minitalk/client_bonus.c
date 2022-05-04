@@ -46,7 +46,8 @@ void	usage(void)
 
 void	handler2(int sig)
 {
-	ft_putstr("server has received");
+	if (sig == SIGUSR2)
+		ft_putstr("server has received");
 }
 
 int	main(int ac, char *av[])
