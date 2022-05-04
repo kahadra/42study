@@ -35,7 +35,7 @@ int	ft_atoi(const char *str)
 		r += str[i] - 48;
 		i++;
 	}
-	if (str[i] <= 48 && str[i] >= 57)
+	if (str[i] <= 48 || str[i] >= 57)
 		return (0);
 	return (r * s);
 }

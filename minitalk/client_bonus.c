@@ -59,6 +59,8 @@ int	main(int ac, char *av[])
 	if (ac != 3)
 		usage();
 	server_pid = ft_atoi(av[1]);
+	if (!server_pid)
+		usage();
 	msg = av[2];
 	send_message(msg, server_pid);
 	return (0);
