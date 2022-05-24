@@ -18,13 +18,13 @@ all:   ${NAME}
 	${CC} ${CFLAGS} -g -pthread -c $< -o ${<:.c=.o}
 
 $(NAME):	$(OBJS)  $(HEADER)
-			$(CC) $(OBJS) $(CFLAGS)  -o $(NAME)
+	$(CC) $(OBJS) $(CFLAGS) -o $(NAME)
 
 clean:
 	${RM} ${OBJS} ${OBJS_B}
 
 fclean:  clean
-		${RM} ${NAME}
+	${RM} ${NAME}
 
 re:   fclean all
 

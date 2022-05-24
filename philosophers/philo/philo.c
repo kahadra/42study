@@ -17,25 +17,25 @@ int	life_checking(t_all *all, int i, int j)
 	while (1)
 	{
 		i = 0;
-		while (i++ < all->table->philo_num)
+		while (i < all->table->philo_num)
 		{
-			if ((get_time() - all->philo[i].last_meal) > all->table->time_to_die)
+			if (get_time() - all->philo[i].last_meal > all->table->time_to_die)
 			{
 				message (all, &all->philo[i], "has died");
 				return (1);
 			}
-			j = 0;
-			while (j++ < all->table->philo_num && all->philo[j].eat_times \
+			j = -1;
+			while (++j < all->table->philo_num && all->philo[j].eat_times \
 				>= all->table->num_to_eat)
 			{
 				if (j == all->table->philo_num - 1)
 				{
-					pthread_mutex_lock(&all->table->message);
 					write (1, "All Philosophers have eaten enough\n", 35);
 					return (1);
 				}
 			}
 			usleep (500);
+			i++;
 		}
 	}
 	return (0);
