@@ -21,7 +21,7 @@ void	message(t_all *all, t_list *philo, char *msg)
 	{
 		pthread_mutex_lock(&all->table->message);
 		ft_putnbr(time);
-		write(1, " ", 1);
+		write(1, "ms ", 3);
 		ft_putstr("philo ");
 		ft_putnbr(philo->id);
 		write(1, " ", 1);

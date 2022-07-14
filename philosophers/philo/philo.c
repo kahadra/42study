@@ -12,10 +12,13 @@
 
 #include "philo.h"
 
-int	life_checking(t_all *all, int i, int j)
+int	life_checking(t_all *all, int i)
 {
+	long long	min;
+
 	while (1)
 	{
+		min = all->table->num_to_eat;
 		i = 0;
 		while (i < all->table->philo_num)
 		{
@@ -24,19 +27,16 @@ int	life_checking(t_all *all, int i, int j)
 				message (all, &all->philo[i], "has died");
 				return (1);
 			}
-			j = -1;
-			while (++j < all->table->philo_num && all->philo[j].eat_times \
-				>= all->table->num_to_eat)
-			{
-				if (j == all->table->philo_num - 1)
-				{
-					write (1, "All Philosophers have eaten enough\n", 35);
-					return (1);
-				}
-			}
-			usleep (500);
+			if (all->philo[i].eat_times <= min)
+				min = all->philo[i].eat_times;
+			//usleep (500);
 			i++;
 		}
+		if (min >= all->table->num_to_eat)
+		{
+			write (1, "All Philosophers have eaten enough\n", 35);
+			return (1);
+		}	
 	}
 	return (0);
 }
@@ -55,6 +55,7 @@ void	*life(void *cp_all)
 		message(all, philo_c, "is sleeping");
 		waiting (all->table->time_to_sleep);
 		message(all, philo_c, "is thinking");
+		usleep (500);
 	}
 	return (NULL);
 }
@@ -109,7 +110,7 @@ int	main(int argc, char **argv)
 		error("Failed to create a thread");
 	if (ft_thread_detach(&all))
 		error("Thread detach failed");
-	life_checking(&all, 0, 0);
+	life_checking(&all, 0);
 	free(all.philo);
 	return (0);
 }

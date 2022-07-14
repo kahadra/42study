@@ -53,7 +53,7 @@ OBJ_D := ./obj/
 OBJ := $(addprefix $(OBJ_D), $(OBJ_N1)) $(addprefix $(OBJ_D), $(OBJ_N2))
 OBJ_BO := $(addprefix $(OBJ_D), $(OBJ_B))
 
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 AR = ar
